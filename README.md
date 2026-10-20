@@ -6,7 +6,7 @@ Hands-on labs from the iVolve DevOps track.
 |---|---|---|
 | Build Tools | [Lab 1](Build%20Tools/Lab1) | Building and packaging a Java application with Maven |
 | Build Tools | [Lab 2](Build%20Tools/Lab2) | Building and packaging a Java application with Gradle |
-| Docker | Lab 3 | Creating a Docker image for a Java application |
+| Docker | [Lab 3](Docker/Lab3) | Creating a Docker image for a Java application |
 
 ## Structure
 

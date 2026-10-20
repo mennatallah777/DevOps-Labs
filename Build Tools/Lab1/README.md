@@ -1,74 +1,41 @@
-# Lab 1: Building and Packaging a Java Application with Maven
+# Lab 1: Building and Packaging Java Application with Maven
 
-Source: https://github.com/Ibrahim-Adel15/CalculatorMavenApp
-
-A simple calculator (sum, subtract, multiply, divide) built, tested and packaged with Maven.
-
-## Project files
-
-| File | Purpose |
-|---|---|
-| `pom.xml` | Maven build file: Java 17, JUnit 5 dependency, jar named `calculator.jar` with `Main` as entry point |
-| `src/main/java/.../Calculator.java` | Calculator logic |
-| `src/main/java/.../Main.java` | Reads two numbers and prints the results |
-| `src/test/java/.../CalculatorTest.java` | 5 unit tests |
-
-## Steps
-
-### 1. Install Java and Maven
+## 1. Install Java and Maven
 
 ```bash
 java -version
 mvn -version
 ```
 
-Used: Temurin JDK 21 and Apache Maven 3.9.9.
-
-### 2. Clone the source code
+## 2. Clone source code
 
 ```bash
 git clone https://github.com/Ibrahim-Adel15/CalculatorMavenApp.git
 cd CalculatorMavenApp
 ```
 
-### 3. Run unit tests
+## 3. Run unit test
 
 ```bash
 mvn test
 ```
 
-Result:
+![mvn test](screenshots/mvn-test.png)
 
-```
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0
-BUILD SUCCESS
-```
-
-### 4. Build the app
+## 4. Build app
 
 ```bash
 mvn package
-ls target/
 ```
 
-Generates the artifact `target/calculator.jar`.
+Generates `target/calculator.jar`.
 
-### 5. Run the app
+![mvn package](screenshots/mvn-package.png)
+
+## 5. Run app and verify it is working
 
 ```bash
 java -jar target/calculator.jar
 ```
 
-### 6. Verify the app is working
-
-Input `10` and `5`:
-
-```
-Enter first number: 10
-Enter second number: 5
-a = 10.0, b = 5.0
-Sum: 15.0
-Subtract: 5.0
-Multiply: 50.0
-Divide: 2.0
-```
+![run app](screenshots/run-app.png)
