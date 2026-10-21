@@ -8,6 +8,7 @@ Hands-on labs from the iVolve DevOps track.
 | Build Tools | [Lab 2](Build%20Tools/Lab2) | Building and packaging a Java application with Gradle |
 | Docker | [Lab 3](Docker/Lab3) | Creating a Docker image for a Java application |
 | Docker | [Lab 4](Docker/Lab4) | Docker image optimization and export/load |
+| Docker | [Lab 5](Docker/Lab5) | Docker image vulnerability scanning with Trivy |
 
 ## Structure
 
