@@ -9,6 +9,7 @@ Hands-on labs from the iVolve DevOps track.
 | Docker | [Lab 3](Docker/Lab3) | Creating a Docker image for a Java application |
 | Docker | [Lab 4](Docker/Lab4) | Docker image optimization and export/load |
 | Docker | [Lab 5](Docker/Lab5) | Docker image vulnerability scanning with Trivy |
+| Docker | [Lab 6](Docker/Lab6) | Docker environment variables and resource management |
 
 ## Structure
 
