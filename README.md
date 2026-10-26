@@ -12,6 +12,7 @@ Hands-on labs from the iVolve DevOps track.
 | Docker | [Lab 6](Docker/Lab6) | Docker environment variables and resource management |
 | Docker | [Lab 7](Docker/Lab7) | Multi-network microservices, volumes, and bind mounts |
 | Docker | [Lab 8](Docker/Lab8) | Node.js and MySQL stack using Docker Compose |
+| Kubernetes | [Lab 9](Kubernetes/Lab9) | Deploy a Kubernetes cluster using kubeadm |
 
 ## Structure
 
