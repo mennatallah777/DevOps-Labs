@@ -14,6 +14,7 @@ Hands-on labs from the iVolve DevOps track.
 | Docker | [Lab 8](Docker/Lab8) | Node.js and MySQL stack using Docker Compose |
 | Kubernetes | [Lab 9](Kubernetes/Lab9) | Deploy a Kubernetes cluster using kubeadm |
 | Kubernetes | [Lab 10](Kubernetes/Lab10) | Node isolation using taints and labels |
+| Kubernetes | [Lab 11](Kubernetes/Lab11) | Namespace management and resource quota enforcement |
 
 ## Structure
 
