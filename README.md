@@ -15,6 +15,7 @@ Hands-on labs from the iVolve DevOps track.
 | Kubernetes | [Lab 9](Kubernetes/Lab9) | Deploy a Kubernetes cluster using kubeadm |
 | Kubernetes | [Lab 10](Kubernetes/Lab10) | Node isolation using taints and labels |
 | Kubernetes | [Lab 11](Kubernetes/Lab11) | Namespace management and resource quota enforcement |
+| Kubernetes | [Lab 12](Kubernetes/Lab12) | Managing configuration and sensitive data with ConfigMaps and Secrets |
 
 ## Structure
 
