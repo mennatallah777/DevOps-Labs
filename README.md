@@ -16,6 +16,7 @@ Hands-on labs from the iVolve DevOps track.
 | Kubernetes | [Lab 10](Kubernetes/Lab10) | Node isolation using taints and labels |
 | Kubernetes | [Lab 11](Kubernetes/Lab11) | Namespace management and resource quota enforcement |
 | Kubernetes | [Lab 12](Kubernetes/Lab12) | Managing configuration and sensitive data with ConfigMaps and Secrets |
+| Kubernetes | [Lab 13](Kubernetes/Lab13) | Persistent storage setup for application logging |
 
 ## Structure
 
