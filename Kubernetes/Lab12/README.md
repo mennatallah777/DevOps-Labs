@@ -25,11 +25,11 @@ metadata:
   name: ivolve-cm
   namespace: ivolve
 data:
-  DB_HOST: mysql.ivolve.svc.cluster.local
+  DB_HOST: ivolve-db-svc.ivolve.svc.cluster.local
   DB_USER: ivolve_user
 ```
 
-`DB_HOST` follows the Service DNS format `<service>.<namespace>.svc.cluster.local`, for the headless Service `mysql` that will be created with the MySQL StatefulSet.
+`DB_HOST` follows the Service DNS format `<service>.<namespace>.svc.cluster.local`, for the headless Service `ivolve-db-svc` created with the MySQL StatefulSet in Lab 14.
 
 ```bash
 kubectl apply -f configmap.yaml

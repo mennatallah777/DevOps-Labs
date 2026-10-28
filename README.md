@@ -17,6 +17,7 @@ Hands-on labs from the iVolve DevOps track.
 | Kubernetes | [Lab 11](Kubernetes/Lab11) | Namespace management and resource quota enforcement |
 | Kubernetes | [Lab 12](Kubernetes/Lab12) | Managing configuration and sensitive data with ConfigMaps and Secrets |
 | Kubernetes | [Lab 13](Kubernetes/Lab13) | Persistent storage setup for application logging |
+| Kubernetes | [Lab 14](Kubernetes/Lab14) | StatefulSet with headless service (MySQL) |
 
 ## Structure
 
