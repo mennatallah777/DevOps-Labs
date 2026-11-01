@@ -19,6 +19,7 @@ Hands-on labs from the iVolve DevOps track.
 | Kubernetes | [Lab 13](Kubernetes/Lab13) | Persistent storage setup for application logging |
 | Kubernetes | [Lab 14](Kubernetes/Lab14) | StatefulSet with headless service (MySQL) |
 | Kubernetes | [Lab 15](Kubernetes/Lab15) | Node.js deployment with init container and ClusterIP service |
+| Kubernetes | [Lab 16](Kubernetes/Lab16) | Pod resource requests and limits with metrics-server |
 
 ## Structure
 
