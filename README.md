@@ -22,6 +22,7 @@ Hands-on labs from the iVolve DevOps track.
 | Kubernetes | [Lab 16](Kubernetes/Lab16) | Pod resource requests and limits with metrics-server |
 | Kubernetes | [Lab 17](Kubernetes/Lab17) | Restricting MySQL access with a NetworkPolicy |
 | Kubernetes | [Lab 18](Kubernetes/Lab18) | Monitoring stack and node-exporter DaemonSet |
+| Kubernetes | [Lab 19](Kubernetes/Lab19) | RBAC with a ServiceAccount, Role, and RoleBinding |
 
 ## Structure
 
