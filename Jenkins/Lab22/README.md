@@ -22,6 +22,8 @@ Registered in **Manage Jenkins → System → Global Trusted Pipeline Libraries*
 | Project Repository | `https://github.com/mennatallah777/DevOps-Labs.git` |
 | Library Path | `Jenkins/Lab22/shared-library/` |
 
+![shared library config](screenshots/01-shared-library-config.png)
+
 ## 2. Pipeline
 
 [`Jenkinsfile`](Jenkinsfile) loads the library with `@Library('ivolve-lib') _` and calls the steps:
@@ -35,6 +37,10 @@ DeployOnK8s(image: env.IMAGE, tag: env.TAG, file: 'Jenkins/Lab22/deployment.yaml
 Post actions are the same as Lab 21: `always` logs out and cleans the workspace, `success` and `failure` print the result.
 
 The job `lab22-pipeline` is a **Pipeline** with **Pipeline script from SCM**: repo `https://github.com/mennatallah777/DevOps-Labs.git`, branch `main`, script path `Jenkins/Lab22/Jenkinsfile`.
+
+The build log shows `Loading library ivolve-lib@main:Jenkins/Lab22/shared-library/`, then each step's commands. DemoApp has no unit tests, so `mvn test` prints `No tests to run`.
+
+![pipeline success](screenshots/02-pipeline-success.png)
 
 ## 3. Agent
 
