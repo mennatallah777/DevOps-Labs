@@ -37,11 +37,13 @@ DockerHub access token saved in **Manage Jenkins → Credentials** as `Username 
 | Clone | `git` DemoApp into `app/` |
 | Build App | `mvn clean package -DskipTests` |
 | Build Docker Image | `docker build -t mennayasser777/demoapp:<build> .` |
-| Scan Docker Image | `trivy image --severity HIGH,CRITICAL` |
+| Scan Docker Image | `trivy image --pkg-types os --scanners vuln --severity HIGH,CRITICAL` |
 | Push Image | `docker login` + `docker push` |
 | Delete Image Locally | `docker rmi` |
 | Update Deployment File | `sed` the new image into [`deployment.yaml`](deployment.yaml) |
 | Deploy to Kubernetes | `kubectl apply` + `kubectl rollout status` |
+
+The scan checks OS packages only: the full scan needs trivy's Java DB, which is too big for the VM's 17 GB disk.
 
 Post actions: `always` logs out of DockerHub and cleans the workspace, `success` and `failure` print the result.
 
