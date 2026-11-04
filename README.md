@@ -24,6 +24,7 @@ Hands-on labs from the iVolve DevOps track.
 | Kubernetes | [Lab 18](Kubernetes/Lab18) | Monitoring stack and node-exporter DaemonSet |
 | Kubernetes | [Lab 19](Kubernetes/Lab19) | RBAC with a ServiceAccount, Role, and RoleBinding |
 | Jenkins | [Lab 20](Jenkins/Lab20) | Role-based authorization for Jenkins users |
+| Jenkins | [Lab 21](Jenkins/Lab21) | Jenkins pipeline for application deployment |
 
 ## Structure
 
