@@ -1,0 +1,52 @@
+@Library('ivolve-lib') _
+
+pipeline {
+    agent { label 'vm-agent' }
+
+    environment {
+        IMAGE = "mennayasser777/demoapp"
+        TAG   = "${BUILD_NUMBER}"
+    }
+
+    stages {
+        stage('Clone') {
+            steps {
+                dir('app') {
+                    git url: 'https://github.com/Ibrahim-Adel15/DemoApp.git', branch: 'main'
+                }
+            }
+        }
+
+        stage('Build App') {
+            steps {
+                BuildApp('app')
+            }
+        }
+
+        stage('Build Image') {
+            steps {
+                BuildImage(image: env.IMAGE, tag: env.TAG, credentialsId: 'dockerhub', appDir: 'app')
+            }
+        }
+
+        stage('Deploy on K8s') {
+            steps {
+                DeployOnK8s(image: env.IMAGE, tag: env.TAG, file: 'Jenkins/Lab22/deployment.yaml', deployment: 'demoapp')
+            }
+        }
+    }
+
+    post {
+        always {
+            sh 'docker logout || true'
+            echo "Pipeline finished: build #${BUILD_NUMBER}"
+            deleteDir()
+        }
+        success {
+            echo "Success: ${IMAGE}:${TAG} deployed to Kubernetes"
+        }
+        failure {
+            echo "Failed: check the stage logs above"
+        }
+    }
+}
