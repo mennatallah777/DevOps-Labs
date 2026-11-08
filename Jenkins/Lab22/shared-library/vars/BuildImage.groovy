@@ -15,4 +15,6 @@ def call(Map args) {
     }
 
     sh "docker rmi ${image}"
+    // The VM disk is small: drop the build cache so master doesn't hit disk pressure
+    sh 'docker builder prune -f'
 }
