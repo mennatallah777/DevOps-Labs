@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: demoapp
-          image: mennayasser777/demoapp:1
+          image: mennayasser777/demoapp:gitops-1
           ports:
             - containerPort: 8080
 ---
