@@ -57,4 +57,28 @@ The job `lab23-pipeline` is a **Pipeline** with **Pipeline script from SCM**: re
 
 ## 6. Result
 
-Argo CD picks up the Jenkins commit (it polls Git every 3 minutes) and syncs `ivolve` to the new image.
+Build #1 pushed `mennayasser777/demoapp:gitops-1` to DockerHub and committed the new tag to GitHub (`Deploy mennayasser777/demoapp:gitops-1 [skip ci]`):
+
+![pipeline success](screenshots/01-pipeline-success.png)
+
+Argo CD picks up the Jenkins commit (it polls Git every 3 minutes), shows `ivolve` as `OutOfSync`, then syncs it automatically. Right after the sync the new pods are still starting, so it shows `Progressing`:
+
+![argocd ivolve synced](screenshots/02-argocd-ivolve-synced.png)
+
+Once the rollout finishes:
+
+```bash
+kubectl get application ivolve -n argocd
+kubectl get pods -l app=demoapp -o custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[0].image
+```
+
+```
+NAME     SYNC STATUS   HEALTH STATUS
+ivolve   Synced        Healthy
+
+NAME                       IMAGE
+demoapp-5c486769ff-42bgz   mennayasser777/demoapp:gitops-1
+demoapp-5c486769ff-vb7sx   mennayasser777/demoapp:gitops-1
+```
+
+Jenkins now commits to `main`, so pull before pushing from the VM: `git pull origin main`.
