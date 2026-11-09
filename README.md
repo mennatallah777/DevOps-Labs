@@ -27,6 +27,7 @@ Hands-on labs from the iVolve DevOps track.
 | Jenkins | [Lab 21](Jenkins/Lab21) | Jenkins pipeline for application deployment |
 | Jenkins | [Lab 22](Jenkins/Lab22) | CI/CD pipeline with Jenkins agents and shared libraries |
 | Jenkins | [Lab 23](Jenkins/Lab23) | GitOps workflow with Jenkins and Argo CD |
+| Ansible | [Lab 24](Ansible/Lab24) | Initial Ansible configuration and ad-hoc execution |
 
 ## Structure
 
