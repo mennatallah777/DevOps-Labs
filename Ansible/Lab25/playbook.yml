@@ -1,0 +1,135 @@
+---
+- name: Install Docker, kubectl and Jenkins on the managed node
+  hosts: managed
+  become: true
+
+  vars:
+    kube_version: v1.34
+    rhel_dvd: /run/media/mennatallahyasser/RHEL-10-1-BaseOS-x86_64
+    redhat_key: file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
+
+  tasks:
+    # ---------- Docker ----------
+    - name: Add the Docker repo
+      ansible.builtin.yum_repository:
+        name: docker-ce-stable
+        file: docker-ce
+        description: Docker CE Stable - $basearch
+        baseurl: https://download.docker.com/linux/rhel/$releasever/$basearch/stable
+        gpgcheck: true
+        gpgkey: https://download.docker.com/linux/rhel/gpg
+
+    - name: Install Docker
+      ansible.builtin.dnf:
+        name: [docker-ce, docker-ce-cli, containerd.io]
+        state: present
+        disablerepo: "*"
+        enablerepo: docker-ce-stable
+
+    - name: Start and enable Docker
+      ansible.builtin.service:
+        name: docker
+        state: started
+        enabled: true
+
+    # ---------- kubectl ----------
+    - name: Add the Kubernetes repo
+      ansible.builtin.yum_repository:
+        name: kubernetes
+        description: Kubernetes
+        baseurl: "https://pkgs.k8s.io/core:/stable:/{{ kube_version }}/rpm/"
+        gpgcheck: true
+        gpgkey: "https://pkgs.k8s.io/core:/stable:/{{ kube_version }}/rpm/repodata/repomd.xml.key"
+        exclude: [kubelet, kubeadm, kubectl, cri-tools, kubernetes-cni]
+
+    - name: Install kubectl
+      ansible.builtin.dnf:
+        name: kubectl
+        state: present
+        disablerepo: "*"
+        enablerepo: kubernetes
+        disable_excludes: all
+
+    # ---------- Jenkins ----------
+    # The VM is not registered with Red Hat, so Java comes from the RHEL DVD
+    - name: Add the RHEL DVD repos
+      ansible.builtin.yum_repository:
+        name: "rhel-dvd-{{ item | lower }}"
+        description: "RHEL 10 DVD {{ item }}"
+        baseurl: "file://{{ rhel_dvd }}/{{ item }}"
+        gpgcheck: true
+        gpgkey: "{{ redhat_key }}"
+      loop: [BaseOS, AppStream]
+
+    - name: Add the Jenkins repo
+      ansible.builtin.yum_repository:
+        name: jenkins
+        description: Jenkins-stable
+        baseurl: https://pkg.jenkins.io/rpm-stable
+        gpgcheck: true
+        gpgkey: https://pkg.jenkins.io/rpm-stable/repodata/repomd.xml.key
+
+    - name: Install Java 21 and fontconfig (needed by Jenkins)
+      ansible.builtin.dnf:
+        name: [java-21-openjdk-headless, fontconfig]
+        state: present
+        disablerepo: "*"
+        enablerepo: [rhel-dvd-baseos, rhel-dvd-appstream]
+
+    - name: Install Jenkins
+      ansible.builtin.dnf:
+        name: jenkins
+        state: present
+        disablerepo: "*"
+        enablerepo: jenkins
+
+    # worker1 has little free RAM, so cap the Java heap and allow a slow start
+    - name: Create the Jenkins service override folder
+      ansible.builtin.file:
+        path: /etc/systemd/system/jenkins.service.d
+        state: directory
+        mode: "0755"
+
+    - name: Limit Jenkins memory
+      ansible.builtin.copy:
+        dest: /etc/systemd/system/jenkins.service.d/override.conf
+        content: |
+          [Service]
+          Environment="JAVA_OPTS=-Djava.awt.headless=true -Xmx256m"
+          TimeoutStartSec=600
+        mode: "0644"
+
+    - name: Start and enable Jenkins
+      ansible.builtin.systemd_service:
+        name: jenkins
+        state: started
+        enabled: true
+        daemon_reload: true
+
+    # ---------- Verify ----------
+    - name: Check Docker
+      ansible.builtin.command: docker --version
+      register: docker_out
+      changed_when: false
+
+    - name: Check kubectl
+      ansible.builtin.command: kubectl version --client
+      register: kubectl_out
+      changed_when: false
+
+    - name: Check that Jenkins answers on port 8080
+      ansible.builtin.uri:
+        url: http://localhost:8080/login
+        status_code: 200
+      register: jenkins_out
+      retries: 30
+      delay: 10
+      until: jenkins_out.status == 200
+
+    - name: Show results
+      ansible.builtin.debug:
+        msg:
+          - "{{ docker_out.stdout }}"
+          - "{{ kubectl_out.stdout_lines[0] }}"
+          - "Jenkins {{ jenkins_out.x_jenkins | default('') }} is up: HTTP {{ jenkins_out.status }}"
+
