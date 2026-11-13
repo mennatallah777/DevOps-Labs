@@ -1,0 +1,7 @@
+---
+- name: Install MySQL and create the ivolve database
+  hosts: managed
+  become: true
+
+  roles:
+    - mysql

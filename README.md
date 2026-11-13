@@ -30,6 +30,7 @@ Hands-on labs from the iVolve DevOps track.
 | Ansible | [Lab 24](Ansible/Lab24) | Initial Ansible configuration and ad-hoc execution |
 | Ansible | [Lab 25](Ansible/Lab25) | Ansible playbook to install Docker, kubectl, and Jenkins |
 | Ansible | [Lab 26](Ansible/Lab26) | Structured configuration management with Ansible roles |
+| Ansible | [Lab 27](Ansible/Lab27) | Securing sensitive data with Ansible Vault (MySQL role) |
 
 ## Structure
 
