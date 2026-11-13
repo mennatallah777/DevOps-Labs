@@ -29,6 +29,7 @@ Hands-on labs from the iVolve DevOps track.
 | Jenkins | [Lab 23](Jenkins/Lab23) | GitOps workflow with Jenkins and Argo CD |
 | Ansible | [Lab 24](Ansible/Lab24) | Initial Ansible configuration and ad-hoc execution |
 | Ansible | [Lab 25](Ansible/Lab25) | Ansible playbook to install Docker, kubectl, and Jenkins |
+| Ansible | [Lab 26](Ansible/Lab26) | Structured configuration management with Ansible roles |
 
 ## Structure
 

@@ -1,0 +1,22 @@
+---
+- name: Add the Docker repo
+  ansible.builtin.yum_repository:
+    name: docker-ce-stable
+    file: docker-ce
+    description: Docker CE Stable - $basearch
+    baseurl: https://download.docker.com/linux/rhel/$releasever/$basearch/stable
+    gpgcheck: true
+    gpgkey: https://download.docker.com/linux/rhel/gpg
+
+- name: Install Docker
+  ansible.builtin.dnf:
+    name: [docker-ce, docker-ce-cli, containerd.io]
+    state: present
+    disablerepo: "*"
+    enablerepo: docker-ce-stable
+
+- name: Start and enable Docker
+  ansible.builtin.service:
+    name: docker
+    state: started
+    enabled: true

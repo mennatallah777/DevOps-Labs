@@ -1,0 +1,17 @@
+---
+- name: Add the Kubernetes repo
+  ansible.builtin.yum_repository:
+    name: kubernetes
+    description: Kubernetes
+    baseurl: "https://pkgs.k8s.io/core:/stable:/{{ kube_version }}/rpm/"
+    gpgcheck: true
+    gpgkey: "https://pkgs.k8s.io/core:/stable:/{{ kube_version }}/rpm/repodata/repomd.xml.key"
+    exclude: [kubelet, kubeadm, kubectl, cri-tools, kubernetes-cni]
+
+- name: Install kubectl
+  ansible.builtin.dnf:
+    name: kubectl
+    state: present
+    disablerepo: "*"
+    enablerepo: kubernetes
+    disable_excludes: all
